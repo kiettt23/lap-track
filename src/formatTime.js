@@ -4,5 +4,6 @@ export const formatTime = (time) => {
   const getMinutes = minutes % 60;
   const getHours = Math.floor(time / 3600);
 
-  return `${getHours} : ${getMinutes} : ${getSeconds}`;
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${pad(getHours)} : ${pad(getMinutes)} : ${pad(getSeconds)}`;
 };
