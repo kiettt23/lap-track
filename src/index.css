@@ -92,7 +92,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .btn {
@@ -128,7 +128,7 @@ body {
   --bd: #2a9d8f;
 }
 
-/* Start */
+/* Start/Resume */
 .btn--danger {
   --bg: #e63946;
   --bd: #e63946;
@@ -151,6 +151,43 @@ body {
   opacity: .5;
   cursor: not-allowed;
 }
+
+/* ===== Button flash when triggered by shortcut ===== */
+.btn--flash {
+  animation: flash-btn 0.3s ease;
+}
+
+@keyframes flash-btn {
+  0% {
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0);
+    transform: scale(1);
+  }
+
+  40% {
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+  }
+
+  100% {
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0);
+    transform: scale(1);
+  }
+}
+
+/* ===== Keyboard shortcuts hint ===== */
+.shortcuts-hint {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  opacity: 0.68;
+  font-size: 12px;
+  margin-top: 16px;
+}
+
+.shortcuts-hint span {
+  white-space: nowrap;
+}
+
 
 /* ===== Laps (sticky header + scroll + zebra rows) ===== */
 .laps {
