@@ -1,57 +1,48 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // useTimer: stopwatch state (time, laps) & controls
-// NOTE: giữ active.current.disabled + isStart (useRef) theo skeleton; refactor sang isRunning(useState) sau release v1.0
 const useTimer = (ini = 0) => {
   // --- state ---
   const [time, setTime] = useState(ini);
   const [laps, setLaps] = useState([]);
+  const [isRunning, setIsRunning] = useState(false);
 
-  // --- refs (DOM & runtime flags, không trigger re-render) ---
-  const isStart = useRef(false);
-  const active = useRef(null);
+  // --- ref ---
   const refInterval = useRef(null);
 
-  // --- handlers ---
-  const startTimer = () => {
-    if (!refInterval.current) {
-      refInterval.current = setInterval(
-        () => setTime((prev) => prev + 1),
-        1000
-      );
-      if (active.current) active.current.disabled = true; // chặn spam Start
-      isStart.current = true;
+  // effect: run/stop interval when isRunning changes
+  useEffect(() => {
+    if (isRunning) {
+      refInterval.current = setInterval(() => {
+        setTime((prev) => prev + 1);
+      }, 1000);
+    } else {
+      clearInterval(refInterval.current);
+      refInterval.current = null;
     }
-  };
 
-  const stopTimer = () => {
-    clearInterval(refInterval.current);
-    refInterval.current = null;
-    if (active.current) active.current.disabled = false;
-    isStart.current = false;
-  };
+    // cleanup on unmount
+    return () => clearInterval(refInterval.current);
+  }, [isRunning]);
 
+  // --- handlers ---
+  const startTimer = () => setIsRunning(true);
+  const stopTimer = () => setIsRunning(false);
   const resetTimer = () => {
-    clearInterval(refInterval.current);
-    refInterval.current = null;
+    setIsRunning(false);
     setTime(0);
-    setLaps([]); // reset = xoá lịch sử laps (stopwatch phổ biến)
-    if (active.current) active.current.disabled = false;
-    isStart.current = false;
+    setLaps([]);
   };
+  const splitTimer = () => setLaps((prev) => [...prev, time]);
 
-  const splitTimer = () => setLaps((prev) => [...prev, time]); // thêm mốc thời gian
-
-  // --- public API ---
   return {
     time,
     laps,
+    isRunning,
     startTimer,
     stopTimer,
     resetTimer,
     splitTimer,
-    active,
-    isStart,
   };
 };
 
