@@ -2,49 +2,63 @@ import useTimer from "./useTimer";
 import { formatTime } from "./formatTime";
 
 function App() {
-  // Hook API
-  const { time, laps, startTimer, stopTimer, resetTimer, splitTimer, active } =
-    useTimer(0);
+  const {
+    time,
+    laps,
+    isRunning,
+    startTimer,
+    stopTimer,
+    resetTimer,
+    splitTimer,
+  } = useTimer(0);
 
   return (
     <main className="app">
       <section className="card">
-        {/* === Brand === */}
+        {/* Header */}
         <header className="card__header">
           <h1 className="brand">LapTrack</h1>
           <p className="subtitle">Simple lap timer for focus &amp; training</p>
         </header>
 
-        {/* === Digits === */}
+        {/* Digits */}
         <div className="display">
           <span className="digits">{formatTime(time)}</span>
         </div>
 
-        {/* === Controls === */}
+        {/* Controls */}
         <div className="controls" role="group">
-          <button className="btn btn--ghost" onClick={stopTimer}>
+          <button
+            className="btn btn--ghost"
+            onClick={stopTimer}
+            disabled={!isRunning}
+          >
             Pause
           </button>
           <button
             className="btn btn--primary"
-            ref={active}
             onClick={startTimer}
+            disabled={isRunning}
           >
-            Start
+            {time > 0 ? "Resume" : "Start"}
           </button>
-          <button className="btn btn--danger" onClick={resetTimer}>
+          <button
+            className="btn btn--danger"
+            onClick={resetTimer}
+            disabled={time === 0}
+          >
             Reset
           </button>
           <button
             className="btn btn--accent"
             onClick={splitTimer}
-            disabled={!time}
+            disabled={!isRunning}
           >
             Add Lap
           </button>
         </div>
 
-        {/* === Laps === */}
+        {/* Laps */}
         {laps.length === 0 ? (
           <div className="laps">
             <div className="laps__head">
@@ -63,7 +77,7 @@ function App() {
             <ol className="laplist" aria-label="Lap list">
               {laps.map((lap, idx) => {
                 const prev = idx === 0 ? 0 : laps[idx - 1];
-                const diff = lap - prev; // chênh lệch so với mốc trước
+                const diff = lap - prev;
                 return (
                   <li className="lap" key={idx}>
                     <span className="lap__no">Lap {idx + 1}</span>
@@ -76,10 +90,10 @@ function App() {
           </div>
         )}
 
-        {/* === Footer === */}
+        {/* Footer */}
         <footer className="footer">
           <span>
-            v1.0 · Simple lap timer for focus &amp; training · Open source
+            v1.1 · Simple lap timer for focus &amp; training · Open source
           </span>
         </footer>
       </section>
