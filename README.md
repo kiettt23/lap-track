@@ -11,11 +11,11 @@ A simple **lap timer web app**. Built with **React + CSS** — start, stop, rese
 
 ## Highlights
 
-- Start / Stop / Reset stopwatch logic.
-- Guard: cannot spam Start when running.
-- 🚀 Split/Lap: record multiple lap times, show Δ difference from previous.
-- 🚀 Custom UI: glassmorphism card, digital digits, laps table with sticky header & scroll.
-- Responsive layout (mobile-friendly).
+- Start / Stop / Reset stopwatch controls
+- Guard: prevent multiple Start clicks while running
+- 🚀 Split/Lap: record lap times with Δ diff
+- 🚀 Custom UI: glassmorphism card, big digits, sticky laps table
+- 🚀 Keyboard shortcuts: **Space = Start/Pause, R = Reset, L = Add Lap**
 
 ---
 
@@ -75,7 +75,7 @@ A simple **lap timer web app**. Built with **React + CSS** — start, stop, rese
 
 - [ ] Countdown mode
 - [ ] Pomodoro cycles (25-5)
-- [ ] Keyboard shortcuts (Space=Start/Stop, R=Reset, L=Lap)
+- [x] Keyboard shortcuts (Space=Start/Stop, R=Reset, L=Lap)
 - [ ] Save sessions (localStorage)
 - [ ] Export laps to CSV/JSON
 - [ ] Theme switch (dark/light)
