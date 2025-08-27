@@ -60,7 +60,7 @@ A simple **lap timer web app**. Built with **React + CSS** — start, stop, rese
 
 1. Clone repo:
    ```bash
-   git clone https://github.com/kiettt23/laptrack.git
+   git clone https://github.com/kiettt23/react-timer-app.git
    cd laptrack
    ```
 2. Install & run:
