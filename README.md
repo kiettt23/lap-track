@@ -1,41 +1,88 @@
+# LapTrack ⏱ (React)
+
+[![Live](https://img.shields.io/badge/Demo-Live-brightgreen)](https://<your-username>.github.io/laptrack)
+![stack](https://img.shields.io/badge/Stack-React%20%7C%20CSS-blue)
+![license](https://img.shields.io/badge/License-MIT-black)
+
+A simple **lap timer web app**. Built with **React + CSS** — start, stop, reset, and record laps with differences.  
+👉 **Live demo:** [https://laptrack.netlify.app](https://laptrack.netlify.app)
+
 ---
-author: tuan hoang
-title: React Timer
-id: cs-virgil-2.2-react-eco
+
+## Highlights
+
+- Start / Stop / Reset stopwatch logic.
+- Guard: cannot spam Start when running.
+- 🚀 Split/Lap: record multiple lap times, show Δ difference from previous.
+- 🚀 Custom UI: glassmorphism card, digital digits, laps table with sticky header & scroll.
+- Responsive layout (mobile-friendly).
+
 ---
 
-# React Timer
+## Screenshot
 
-:timer*clock: \_Building a timer using create-react-app.*
+![screenshot](public/screenshot.png)
 
-The purpose of this project is to practice our React hooks skills such as `useState` `useRef` and `Custom Hook`
+---
 
-Everyone know what a timer is eventhough not all timers look the same. Today, we are making a timer that look like this , (_or better!_)
-![clock](https://i.ibb.co/0nYMqfL/Screen-Shot-2022-03-12-at-18-07-21.png)
+## What I learned
 
-[Check out this demo to see it in action !](https://cs-react-timer.netlify.app/)
+- Using **custom React hooks** (`useTimer`) to encapsulate logic.
+- Managing refs vs state (`useRef` for DOM, `useState` for UI).
+- Formatting time into `HH:MM:SS`.
+- Styling with CSS glassmorphism + sticky headers.
+- Organizing code into small, reusable files.
 
-## User Story
+---
 
-- User click start button to start the timer
-- User can not click start button while timer is running
-- User click stop button to see timer stop
-- User can click start to re-start the timer after stop
-- User can click reset button at anytime to reset the timer
-- :rocket: User see a different timer than the one from this example. _Meaning you should change the UI display_
-- :rocket::rocket::rocket: User can "split" the timer, creating multiple records of time per "split-button clicked"
+## Project structure
 
-## Requirement
+```
+/ # project root
+├── src/
+│ ├── App.js # UI shell, controls, render laps
+│ ├── useTimer.js # stopwatch logic (time, laps, start/stop/reset/split)
+│ ├── formatTime.js # format seconds → HH:MM:SS
+│ ├── index.css # layout, glass card, controls, laps, footer
+│ └── index.js # entry point
+├── public/
+│ └── index.html # page title "LapTrack"
+├── docs/
+│ └── screenshot.png # UI screenshot
+├── package.json
+├── README.md
+└── LICENSE
+```
 
-Fork this [repo](https://github.com/coderschool/cs-react-timer-starter-code) and read through the files.
-Often time , developers are required to work with an existing codebase and improve upon. This is one of that time.
+---
 
-You should only code in the designinated area.
-Using the VSC search function for "Your code here", you will see a list of all the placces that required your attention.
+## Run locally
 
-## Grading
+1. Clone repo:
+   ```bash
+   git clone https://github.com/kiettt23/laptrack.git
+   cd laptrack
+   ```
+2. Install & run:
+   ```bash
+   npm install
+   npm start
+   ```
 
-| Requirement                                       | Grade |
-| ------------------------------------------------- | ----- |
-| Missing any of the user story that are not rocket | - 5   |
-| Made rocket                                       | + 10  |
+---
+
+## Roadmap
+
+- [ ] Countdown mode
+- [ ] Pomodoro cycles (25-5)
+- [ ] Keyboard shortcuts (Space=Start/Stop, R=Reset, L=Lap)
+- [ ] Save sessions (localStorage)
+- [ ] Export laps to CSV/JSON
+- [ ] Theme switch (dark/light)
+- [ ] (Sport mode) Pace/km, charts
+
+---
+
+## License
+
+MIT — see [LICENSE](./LICENSE).
