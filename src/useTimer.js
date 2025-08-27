@@ -10,7 +10,7 @@ const useTimer = (ini = 0) => {
   // --- ref ---
   const refInterval = useRef(null);
 
-  // effect: run/stop interval when isRunning changes
+  // --- effect ---
   useEffect(() => {
     if (isRunning) {
       refInterval.current = setInterval(() => {
