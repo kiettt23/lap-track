@@ -1,3 +1,4 @@
+// formatTime: seconds -> "HH:MM:SS"
 export const formatTime = (time) => {
   const getSeconds = time % 60;
   const minutes = Math.floor(time / 60);
@@ -5,5 +6,5 @@ export const formatTime = (time) => {
   const getHours = Math.floor(time / 3600);
 
   const pad = (n) => String(n).padStart(2, "0");
-  return `${pad(getHours)} : ${pad(getMinutes)} : ${pad(getSeconds)}`;
+  return `${pad(getHours)}:${pad(getMinutes)}:${pad(getSeconds)}`;
 };
